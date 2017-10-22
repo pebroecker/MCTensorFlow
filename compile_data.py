@@ -6,12 +6,17 @@ import sys
 
 L = int(sys.argv[1])
 
-in_pattern = "**/honeycomb_L_{L}_W_{L}_theta_20_dt_0.1_*.task{{t}}.out.h5".format(L=L)
+in_pattern = "honeycomb_L_{L}_W_{L}_theta_20_dt_0.1_{{j}}/honeycomb_L_{L}_W_{L}_theta_20_dt_0.1_*.task{{t}}.out.h5".format(L=L)
 out_pattern = "honeycomb_L_{L}_W_{L}_theta_20_dt_0.1.task{{t}}.out.h5".format(L=L)
 to_copy = ["greens_imag", "greens_real"]
 
 for t in range(100):
-    files = glob(in_pattern.format(t=t), recursive=True)
+    files = []
+
+    for j in range(100):
+        if os.path.exists(in_pattern.format(j=j, t=t)):
+            files.append(in_pattern.format(j=j, t=t))
+
     if len(files) == 0:
         continue
 
