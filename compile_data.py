@@ -18,6 +18,7 @@ for t in range(100):
             files.append(in_pattern.format(j=j, t=t))
 
     if len(files) == 0:
+        print("None for", in_pattern)
         continue
 
     print(in_pattern.format(t=t))
