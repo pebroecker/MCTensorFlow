@@ -21,7 +21,7 @@ for t in range(100):
         print("None for", in_pattern)
         continue
 
-    print(in_pattern.format(t=t))
+    print(out_pattern.format(t=t))
     out_filename = out_pattern.format(t=t)
     out_file = h5py.File(out_filename, "w")
     
