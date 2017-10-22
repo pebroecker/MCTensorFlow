@@ -5,6 +5,7 @@ import os
 import sys
 
 L = int(sys.argv[1])
+vol = 2 * L * L
 
 in_pattern = "honeycomb_L_{L}_W_{L}_theta_20_dt_0.1_{{j}}/honeycomb_L_{L}_W_{L}_theta_20_dt_0.1_{{j}}.task{{t}}.out.h5".format(L=L)
 out_pattern = "honeycomb_L_{L}_W_{L}_theta_20_dt_0.1.task{{t}}.out.h5".format(L=L)
@@ -35,8 +36,8 @@ for t in range(100):
 
             try:
                 for tc in to_copy:                
-                    out_file["simulation/results/{}/{}".format(tc, id)] = in_file["simulation/results/{}/1".format(tc)][...].reshape(128, 72, 72)
-                    out_file["simulation/results/{}/{}".format(tc, id + 1)] = in_file["simulation/results/{}/2".format(tc)][...].reshape(128, 72, 72)
+                    out_file["simulation/results/{}/{}".format(tc, id)] = in_file["simulation/results/{}/1".format(tc)][...].reshape(128, vol, vol)
+                    out_file["simulation/results/{}/{}".format(tc, id + 1)] = in_file["simulation/results/{}/2".format(tc)][...].reshape(128, vol, vol)
                 in_file.close()
                 id += 2
             except:
