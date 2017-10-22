@@ -6,7 +6,7 @@ import sys
 
 L = int(sys.argv[1])
 
-in_pattern = "honeycomb_L_{L}_W_{L}_theta_20_dt_0.1_{{j}}/honeycomb_L_{L}_W_{L}_theta_20_dt_0.1_*.task{{t}}.out.h5".format(L=L)
+in_pattern = "honeycomb_L_{L}_W_{L}_theta_20_dt_0.1_{{j}}/honeycomb_L_{L}_W_{L}_theta_20_dt_0.1_{{j}}.task{{t}}.out.h5".format(L=L)
 out_pattern = "honeycomb_L_{L}_W_{L}_theta_20_dt_0.1.task{{t}}.out.h5".format(L=L)
 to_copy = ["greens_imag", "greens_real"]
 
