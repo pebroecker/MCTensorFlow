@@ -42,6 +42,9 @@ with tf.Session() as sess:
     gs = sess.run(global_step)
     print("Global step ", gs)
 
+    x_values = []
+    y_values = []
+
     for task in range(1, 100):
         if not os.path.exists(file_pattern.format(i=task)):
             continue
@@ -61,8 +64,17 @@ with tf.Session() as sess:
                     accuracies.append(np.mean(result, 0)[1])
 
                 print("The result is", h, np.mean(accuracies))
+                x_values.append(np.float(h))
+                y_values.append(np.mean(accuracies))
+                
         except KeyboardInterrupt:
             raise
         except:
             print(sys.exc_info())
             pass
+
+    
+    out = h5py.File("{}.h5".format(checkpoint), "w")
+    out["parameter"] = parameter
+    out["x"] = x_values
+    out["y"] = y_values

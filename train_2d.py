@@ -21,7 +21,7 @@ right_files = copy(files)
 right_labels =  [1] * len(files)
 base_path = sys.argv[5] # path for saving results
 batch_size = 128
-n_epochs = 128
+n_epochs = 32
 
 # create necessary paths if not exist yet
 if not os.path.isdir(base_path): os.mkdir(base_path)
